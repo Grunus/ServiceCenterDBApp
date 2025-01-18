@@ -1,0 +1,91 @@
+﻿<UserControl
+    x:Class="WPFApp.Views.Employees.DeleteEmployeesView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:components="clr-namespace:WPFApp.Components"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WPFApp.Views.Employees"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <StackPanel>
+        <Grid Margin="20,10,20,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                HorizontalAlignment="Center"
+                FontSize="24"
+                FontWeight="Bold"
+                Text="Видалити працівника" />
+            <ComboBox
+                Grid.Row="1"
+                Width="200"
+                Margin="0,5,0,0"
+                DisplayMemberPath="EmployeeId"
+                ItemsSource="{Binding Employees}"
+                SelectedItem="{Binding SelectedEmployee}" />
+            <components:FormInput
+                Title="ID працівника:"
+                Grid.Row="2"
+                IsActive="False"
+                Text="{Binding SelectedEmployee.EmployeeId}" />
+            <components:FormInput
+                Title="Прізвище:"
+                Grid.Row="3"
+                IsActive="False"
+                Text="{Binding SelectedEmployee.LastName}" />
+            <components:FormInput
+                Title="Ім'я:"
+                Grid.Row="4"
+                IsActive="False"
+                Text="{Binding SelectedEmployee.FirstName}" />
+            <components:FormInput
+                Title="По батькові:"
+                Grid.Row="5"
+                IsActive="False"
+                Text="{Binding SelectedEmployee.MiddleName}" />
+            <components:FormInput
+                Title="Номер телефону:"
+                Grid.Row="6"
+                IsActive="False"
+                Text="{Binding SelectedEmployee.PhoneNumber}" />
+            <components:FormInput
+                Title="Електронна пошта:"
+                Grid.Row="7"
+                IsActive="False"
+                Text="{Binding SelectedEmployee.Email}" />
+            <components:FormInput
+                Title="Спеціалізація:"
+                Grid.Row="8"
+                IsActive="False"
+                Text="{Binding SelectedEmployee.Specialization}" />
+            <Button
+                Grid.Row="9"
+                Width="125"
+                Height="25"
+                Margin="0,5,0,0"
+                Command="{Binding DeleteEmployeeCommand}"
+                Content="Видалити"
+                Style="{DynamicResource RoundedButton}" />
+            <Button
+                Grid.Row="10"
+                Width="125"
+                Height="25"
+                Margin="0,5,0,0"
+                Command="{Binding ReturnCommand}"
+                Content="Повернутися"
+                Style="{DynamicResource RoundedButton}" />
+        </Grid>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,91 @@
+﻿<UserControl
+    x:Class="WPFApp.Components.NavigationBar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WPFApp.Components"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="Crimson"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="AntiqueWhite" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Margin" Value="10,0,0,0" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <TextBlock Text="{TemplateBinding Content}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <TextBlock Text="{TemplateBinding Content}" TextDecorations="Underline" />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid MaxWidth="1280" Margin="20,10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Column="0"
+            FontSize="18"
+            FontWeight="Bold"
+            Foreground="AntiqueWhite"
+            Text="БД Сервісного центру" />
+
+        <Button
+            Grid.Column="1"
+            Command="{Binding NavigateCustomersCommand}"
+            Content="Клієнти" />
+
+        <Button
+            Grid.Column="2"
+            Command="{Binding NavigateEmployeesCommand}"
+            Content="Працівники" />
+
+        <Button
+            Grid.Column="3"
+            Command="{Binding NavigateOrdersCommand}"
+            Content="Замовлення" />
+
+        <Button
+            Grid.Column="4"
+            Command="{Binding NavigatePaymentsCommand}"
+            Content="Платежі" />
+
+        <Button
+            Grid.Column="5"
+            Command="{Binding NavigateServiceTypesCommand}"
+            Content="Послуги" />
+
+        <Button
+            Grid.Column="6"
+            Command=""
+            Content="Щось ще???"
+            Visibility="Collapsed" />
+    </Grid>
+</UserControl>

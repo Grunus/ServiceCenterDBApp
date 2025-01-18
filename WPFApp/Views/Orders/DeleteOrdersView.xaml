@@ -1,0 +1,148 @@
+﻿<UserControl
+    x:Class="WPFApp.Views.Orders.DeleteOrdersView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:components="clr-namespace:WPFApp.Components"
+    xmlns:converters="clr-namespace:WPFApp.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:enums="clr-namespace:Library.Enums;assembly=Library"
+    xmlns:local="clr-namespace:WPFApp.Views.Orders"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <StackPanel>
+        <Grid Margin="20,10,20,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                HorizontalAlignment="Center"
+                FontSize="24"
+                FontWeight="Bold"
+                Text="Видалити замовлення" />
+            <ComboBox
+                Grid.Row="1"
+                Width="200"
+                Margin="0,5,0,0"
+                DisplayMemberPath="OrderId"
+                ItemsSource="{Binding Orders}"
+                SelectedItem="{Binding SelectedOrder}" />
+            <components:FormInput
+                Title="ID замовлення:"
+                Grid.Row="2"
+                IsActive="False"
+                Text="{Binding SelectedOrder.OrderId}" />
+            <components:FormInput
+                Title="ID клієнта:"
+                Grid.Row="3"
+                IsActive="False"
+                Text="{Binding SelectedOrder.CustomerId}" />
+            <components:FormInput
+                Title="ID послуги:"
+                Grid.Row="4"
+                IsActive="False"
+                Text="{Binding SelectedOrder.ServiceTypeId}" />
+            <components:FormInput
+                Title="ID працівника:"
+                Grid.Row="5"
+                IsActive="False"
+                Text="{Binding SelectedOrder.EmployeeId}" />
+            <components:FormInput
+                Title="Опис:"
+                Grid.Row="6"
+                IsActive="False"
+                Text="{Binding SelectedOrder.Description}" />
+            <components:FormInput
+                Title="Ціна:"
+                Grid.Row="7"
+                IsActive="False"
+                Text="{Binding SelectedOrder.Price}" />
+            <!--  Too lazy to make a form combobox because of all those depend(ass)y properties  -->
+            <StackPanel
+                Grid.Row="8"
+                Width="400"
+                Margin="0,5,0,10"
+                Orientation="Horizontal">
+                <TextBlock
+                    Width="135"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Text="Статус:" />
+                <ComboBox
+                    Width="250"
+                    Margin="10,0,0,0"
+                    HorizontalAlignment="Right"
+                    DisplayMemberPath="DisplayName"
+                    IsEnabled="False"
+                    ItemsSource="{converters:EnumToStringItemsSource {x:Type enums:OrderStatus}}"
+                    SelectedValue="{Binding SelectedOrder.Status}"
+                    SelectedValuePath="Value" />
+            </StackPanel>
+            <StackPanel
+                Grid.Row="9"
+                Width="400"
+                Margin="0,5,0,10"
+                Orientation="Horizontal">
+                <TextBlock
+                    Width="135"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Text="Дата замовлення:" />
+                <DatePicker
+                    Width="250"
+                    Margin="10,0,0,0"
+                    HorizontalAlignment="Right"
+                    IsEnabled="False"
+                    SelectedDate="{Binding SelectedOrder.PlacedAt}" />
+            </StackPanel>
+            <StackPanel
+                Grid.Row="10"
+                Width="400"
+                Margin="0,5,0,10"
+                Orientation="Horizontal">
+                <TextBlock
+                    Width="135"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Text="Дата закінчення:" />
+                <DatePicker
+                    Width="250"
+                    Margin="10,0,0,0"
+                    HorizontalAlignment="Right"
+                    IsEnabled="False"
+                    SelectedDate="{Binding SelectedOrder.DueBy}" />
+            </StackPanel>
+            <Button
+                Grid.Row="11"
+                Width="125"
+                Height="25"
+                Margin="0,5,0,0"
+                Command="{Binding DeleteOrderCommand}"
+                Content="Видалити"
+                Style="{DynamicResource RoundedButton}" />
+            <Button
+                Grid.Row="12"
+                Width="125"
+                Height="25"
+                Margin="0,5,0,0"
+                Command="{Binding ReturnCommand}"
+                Content="Повернутися"
+                Style="{DynamicResource RoundedButton}" />
+        </Grid>
+    </StackPanel>
+</UserControl>
